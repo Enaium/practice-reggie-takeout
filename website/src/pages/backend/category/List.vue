@@ -26,12 +26,12 @@ const data = reactive({
   }
 })
 
-onMounted(()=>{
+onMounted(() => {
   init()
 })
 
 const init = async () => {
-  await getCategoryPage({ 'page': data.page, 'pageSize': data.pageSize }).then(res => {
+  await getCategoryPage({'page': data.page, 'pageSize': data.pageSize}).then(res => {
     if (String(res.code) === '1') {
       data.tableData = res.data.records
       data.counts = Number(res.data.total)
@@ -95,7 +95,7 @@ const submitForm = (st) => {
     if (valid) {
       const reg = /^\d+$/
       if (reg.test(classData.sort)) {
-        addCategory({ 'name': classData.name, 'type': data.type, sort: classData.sort }).then(res => {
+        addCategory({'name': classData.name, 'type': data.type, sort: classData.sort}).then(res => {
           console.log(res)
           if (res.code === 1) {
             $message.success('分类添加成功！')
@@ -122,7 +122,7 @@ const submitForm = (st) => {
   } else if (valid) {
     const reg = /^\d+$/
     if (reg.test(data.classData.sort)) {
-      editCategory({ 'id': data.classData.id, 'name': data.classData.name, sort: data.classData.sort }).then(res => {
+      editCategory({'id': data.classData.id, 'name': data.classData.name, sort: data.classData.sort}).then(res => {
         if (res.code === 1) {
           $message.success('分类修改成功！')
           data.classData.dialogVisible = false
@@ -153,57 +153,59 @@ const handleCurrentChange = (val) => {
 </script>
 
 <template>
-  <div class="dashboard-container" id="category-app">
+  <div id="category-app" class="dashboard-container">
     <div class="container">
       <div class="tableBar" style="display: inline-block">
-        <el-button type="primary" class="continue" @click="addClass('class')">
+        <el-button class="continue" type="primary" @click="addClass('class')">
           + 新增菜品分类
         </el-button>
         <el-button type="primary" @click="addClass('meal')">
           + 新增套餐分类
         </el-button>
       </div>
-      <el-table :data="data.tableData" stripe class="tableBox">
-        <el-table-column prop="name" label="分类名称"/>
-        <el-table-column prop="type" label="分类类型">
+      <el-table :data="data.tableData" class="tableBox" stripe>
+        <el-table-column label="分类名称" prop="name"/>
+        <el-table-column label="分类类型" prop="type">
           <template slot-scope="scope">
             <span>{{ scope.row.type == '1' ? '菜品分类' : '套餐分类' }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="updateTime" label="操作时间">
+        <el-table-column label="操作时间" prop="updateTime">
           <template slot-scope="scope">
             {{ scope.row.updateTime }}
           </template>
         </el-table-column>
-        <el-table-column prop="sort" label="排序"/>
-        <el-table-column label="操作" width="160" align="center">
+        <el-table-column label="排序" prop="sort"/>
+        <el-table-column align="center" label="操作" width="160">
           <template slot-scope="scope">
-            <el-button type="text" size="small" class="blueBug" @click="editHandle(scope.row)">
+            <el-button class="blueBug" size="small" type="text" @click="editHandle(scope.row)">
               修改
             </el-button>
-            <el-button type="text" size="small" class="delBut non" @click="deleteHandle(scope.row.id)">
+            <el-button class="delBut non" size="small" type="text" @click="deleteHandle(scope.row.id)">
               删除
             </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination class="pageList" :page-sizes="[10, 20, 30, 40]" :page-size="data.pageSize"
-                     layout="total, sizes, prev, pager, next, jumper" :total="data.counts" @size-change="handleSizeChange"
+      <el-pagination :page-size="data.pageSize" :page-sizes="[10, 20, 30, 40]" :total="data.counts"
+                     class="pageList" layout="total, sizes, prev, pager, next, jumper"
+                     @size-change="handleSizeChange"
                      @current-change="handleCurrentChange"></el-pagination>
     </div>
-    <el-dialog :title="data.classData.title" :visible.sync="data.classData.dialogVisible" width="30%" :before-close="handleClose">
+    <el-dialog :before-close="handleClose" :title="data.classData.title" :visible.sync="data.classData.dialogVisible"
+               width="30%">
       <el-form class="demo-form-inline" label-width="100px">
         <el-form-item label="分类名称：">
-          <el-input v-model="data.classData.name" placeholder="请输入分类名称" maxlength="14"/>
+          <el-input v-model="data.classData.name" maxlength="14" placeholder="请输入分类名称"/>
         </el-form-item>
         <el-form-item label="排序：">
-          <el-input v-model="data.classData.sort" type="number" placeholder="请输入排序"/>
+          <el-input v-model="data.classData.sort" placeholder="请输入排序" type="number"/>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button size="medium" @click="data.classData.dialogVisible = false">取 消</el-button>
-        <el-button type="primary" size="medium" @click="submitForm">确 定</el-button>
-        <el-button v-if="data.action != 'edit'" type="primary" size="medium" class="continue" @click="submitForm('go')">
+        <el-button size="medium" type="primary" @click="submitForm">确 定</el-button>
+        <el-button v-if="data.action != 'edit'" class="continue" size="medium" type="primary" @click="submitForm('go')">
           保存并继续添加 </el-button>
       </span>
     </el-dialog>

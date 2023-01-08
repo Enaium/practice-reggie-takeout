@@ -14,6 +14,7 @@ import "@/styles/backend/common.css"
 import "@/styles/backend/page.css"
 import {useRouter} from "vue-router";
 import {logoutApi} from "@/api/backend/login.js";
+import Message from "@/components/backend/Message.vue";
 
 
 const router = useRouter();
@@ -67,10 +68,11 @@ const data = reactive({
 })
 
 const logout = () => {
-  logoutApi().then((res)=>{
-    if(res.code === 1){
+  logoutApi().then((res) => {
+    if (res.code === 1) {
       localStorage.removeItem('userInfo')
-      window.location.href = '/backend/page/login/login.html'
+      //todo
+      // window.location.href = '/backend/page/login/login.html'
     }
   })
 }
@@ -97,7 +99,8 @@ const closeLoading = () => {
 }
 
 onMounted(() => {
-  const userInfo = window.localStorage.getItem('userInfo')
+  window.menuHandle = menuHandle
+  const userInfo = localStorage.getItem('userInfo')
   if (userInfo) {
     this.userInfo = JSON.parse(userInfo)
   }
@@ -111,27 +114,28 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="app" id="app">
+  <Message/>
+  <div id="app" class="app">
     <div class="app-wrapper openSidebar clearfix">
       <!-- sidebar -->
       <div class="sidebar-container">
         <div class="logo">
           <!-- <img src="images/logo.png" width="122.5" alt="" /> -->
-          <img src="@/assets/backend/login/login-logo.png" alt="" style="width: 117px; height: 32px"/>
+          <img alt="" src="@/assets/backend/login/login-logo.png" style="width: 117px; height: 32px"/>
         </div>
 
         <el-scrollbar wrap-class="scrollbar-wrapper">
           <el-menu
+              :collapse-transition="false"
               :default-active="data.defAct"
               :unique-opened="false"
-              :collapse-transition="false"
+              active-text-color="#f4f4f5"
               background-color="#343744"
               text-color="#bfcbd9"
-              active-text-color="#f4f4f5"
           >
             <div v-for="item in data.menuList" :key="item.id">
               <el-menu-item :index="item.id" @click="menuHandle(item,false)">
-                <i class="iconfont" :class="item.icon"></i>
+                <i :class="item.icon" class="iconfont"></i>
                 <span slot="title">{{ item.name }}</span>
               </el-menu-item>
             </div>
@@ -143,18 +147,18 @@ onBeforeUnmount(() => {
         <div class="navbar">
           <div class="head-lable">
               <span v-if="data.goBackFlag" class="goBack" @click="goBack()"
-              ><img src="@/assets/backend/icons/btn_back@2x.png" alt=""/> 返回</span
+              ><img alt="" src="@/assets/backend/icons/btn_back@2x.png"/> 返回</span
               >
             <span>{{ data.headTitle }}</span>
           </div>
           <div class="right-menu">
             <div class="avatar-wrapper">userInfo.name</div>
             <!-- <div class="logout" @click="logout">退出</div> -->
-            <img src="@/assets/backend/icons/btn_close@2x.png" class="outLogin" alt="退出" @click="logout"/>
+            <img alt="退出" class="outLogin" src="@/assets/backend/icons/btn_close@2x.png" @click="logout"/>
           </div>
         </div>
-        <div class="app-main" v-loading="data.loading">
-          <div class="divTmp" v-show="data.loading"></div>
+        <div v-loading="data.loading" class="app-main">
+          <div v-show="data.loading" class="divTmp"></div>
           <router-view v-show="!data.loading"/>
         </div>
       </div>

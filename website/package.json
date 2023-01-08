@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^1.2.2",
     "element-plus": "^2.2.28",
+    "vant": "^4.0.7",
     "vue": "^3.2.45",
     "vue-router": "4"
   },

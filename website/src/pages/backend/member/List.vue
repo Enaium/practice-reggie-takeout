@@ -54,13 +54,13 @@ const addMemberHandle = (st) => {
   if (st === 'add') {
     window.parent.menuHandle({
       id: '2',
-      url: '/backend/member/add',
+      path: '/backend/member/add',
       name: '添加员工'
     }, true)
   } else {
     window.parent.menuHandle({
       id: '2',
-      url: '/backend/member/add?id=' + st,
+      path: '/backend/member/add?id=' + st,
       name: '修改员工'
     }, true)
   }
@@ -69,7 +69,7 @@ const addMemberHandle = (st) => {
 const statusHandle = (row) => {
   data.id = row.id
   data.status = row.status
-  enableOrDisableEmployee({ 'id': data.id, 'status': !data.status ? 1 : 0 }).then(res => {
+  enableOrDisableEmployee({'id': data.id, 'status': !data.status ? 1 : 0}).then(res => {
     console.log('enableOrDisableEmployee', res)
     if (String(res.code) === '1') {
       $message.success('账号状态更改成功！')
@@ -92,10 +92,10 @@ const handleCurrentChange = (val) => {
 </script>
 
 <template>
-  <div class="dashboard-container" id="member-app">
+  <div id="member-app" class="dashboard-container">
     <div class="container">
       <div class="tableBar">
-        <el-input v-model="data.input" placeholder="请输入员工姓名" style="width: 250px" clearable
+        <el-input v-model="data.input" clearable placeholder="请输入员工姓名" style="width: 250px"
                   @keyup.enter.native="handleQuery">
           <i slot="prefix" class="el-input__icon el-icon-search" style="cursor: pointer" @click="handleQuery"></i>
         </el-input>
@@ -103,30 +103,31 @@ const handleCurrentChange = (val) => {
           + 添加员工
         </el-button>
       </div>
-      <el-table :data="data.tableData" stripe class="tableBox">
-        <el-table-column prop="name" label="员工姓名"></el-table-column>
-        <el-table-column prop="username" label="账号"></el-table-column>
-        <el-table-column prop="phone" label="手机号"></el-table-column>
+      <el-table :data="data.tableData" class="tableBox" stripe>
+        <el-table-column label="员工姓名" prop="name"></el-table-column>
+        <el-table-column label="账号" prop="username"></el-table-column>
+        <el-table-column label="手机号" prop="phone"></el-table-column>
         <el-table-column label="账号状态">
           <template slot-scope="scope">
             {{ String(scope.row.status) === '0' ? '已禁用' : '正常' }}
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="160" align="center">
+        <el-table-column align="center" label="操作" width="160">
           <template slot-scope="scope">
-            <el-button type="text" size="small" class="blueBug" @click="addMemberHandle(scope.row.id)"
-                       :class="{notAdmin:user !== 'admin'}">
+            <el-button :class="{notAdmin:user !== 'admin'}" class="blueBug" size="small" type="text"
+                       @click="addMemberHandle(scope.row.id)">
               编辑
             </el-button>
-            <el-button type="text" size="small" class="delBut non" @click="statusHandle(scope.row)"
-                       v-if="user === 'admin'">
+            <el-button v-if="user === 'admin'" class="delBut non" size="small" type="text"
+                       @click="statusHandle(scope.row)">
               {{ scope.row.status == '1' ? '禁用' : '启用' }}
             </el-button>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination class="pageList" :page-sizes="[2]" :page-size="pageSize"
-                     layout="total, sizes, prev, pager, next, jumper" :total="counts" :current-page.sync="page"
+      <el-pagination :current-page.sync="data.page" :page-size="data.pageSize" :page-sizes="[2]"
+                     :total="data.counts" class="pageList"
+                     layout="total, sizes, prev, pager, next, jumper"
                      @size-change="handleSizeChange" @current-change="handleCurrentChange"></el-pagination>
     </div>
   </div>

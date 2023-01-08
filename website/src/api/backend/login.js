@@ -1,17 +1,15 @@
 import request from "@/js/backend/request.js";
 
 
-export function loginApi(data) {
-  return request({
-    'url': '/employee/login',
-    'method': 'post',
-    data
-  })
-}
+export const loginApi = (data) =>
+    request({
+        'url': '/employee/login',
+        'method': 'post',
+        data
+    })
 
-export function logoutApi(){
-  return request({
-    'url': '/employee/logout',
-    'method': 'post',
-  })
-}
+export const logoutApi = () =>
+    request({
+        'url': '/employee/logout',
+        'method': 'post',
+    })

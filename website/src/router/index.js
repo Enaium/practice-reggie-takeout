@@ -9,11 +9,44 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Backend from "@/layouts/backend/Backend.vue";
 import MemberList from "@/pages/backend/member/List.vue"
+import MemberAdd from "@/pages/backend/member/Add.vue"
 import CategoryList from "@/pages/backend/category/List.vue"
+import FoodList from "@/pages/backend/food/List.vue"
+import FoodAdd from "@/pages/backend/food/Add.vue"
+import ComboList from "@/pages/backend/combo/List.vue"
+import ComboAdd from "@/pages/backend/combo/Add.vue"
+import OrderList from "@/pages/backend/order/List.vue"
+import BackendLogin from "@/pages/backend/Login.vue";
+import Frontend from "@/layouts/frontend/Frontend.vue";
+import Home from "@/pages/frontend/Home.vue";
+import Login from "@/pages/frontend/Login.vue";
+import AddOrder from "@/pages/frontend/AddOrder.vue";
 
 export default createRouter({
     history: createWebHistory(),
     routes: [
+        {
+            path: "/frontend",
+            name: "frontend",
+            component: Frontend,
+            children: [
+                {
+                    path: "",
+                    name: "home",
+                    component: Home
+                },
+                {
+                    path: "login",
+                    name: "login",
+                    component: Login
+                },
+                {
+                    path: "add-order",
+                    name: "add-order",
+                    component: AddOrder
+                },
+            ]
+        },
         {
             path: "/backend",
             name: "backend",
@@ -26,11 +59,46 @@ export default createRouter({
                     component: MemberList
                 },
                 {
+                    path: "member/add",
+                    name: "backend-member-add",
+                    component: MemberAdd
+                },
+                {
                     path: "category/list",
                     name: "backend-category-list",
                     component: CategoryList
+                },
+                {
+                    path: "food/list",
+                    name: "backend-food-list",
+                    component: FoodList
+                },
+                {
+                    path: "food/add",
+                    name: "backend-food-add",
+                    component: FoodAdd
+                },
+                {
+                    path: "combo/list",
+                    name: "backend-combo-list",
+                    component: ComboList
+                },
+                {
+                    path: "combo/add",
+                    name: "backend-combo-add",
+                    component: ComboAdd
+                },
+                {
+                    path: "order/list",
+                    name: "backend-order-list",
+                    component: OrderList
                 }
             ]
+        },
+        {
+            path: "/backend/login",
+            name: "backend-login",
+            component: BackendLogin,
         }
     ]
 })
