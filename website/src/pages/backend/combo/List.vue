@@ -178,7 +178,7 @@ const handleCurrentChange = val => {
             prop="name"
         ></el-table-column>
         <el-table-column align="center" label="图片" prop="image">
-          <template slot-scope="{ row }">
+          <template #default="{ row }">
             <el-image :preview-src-list="[ `/common/download?name=${row.image}` ]" :src="getImage(row.image)"
                       style="width: auto; height: 40px; border:none;cursor: pointer;">
               <div slot="error" class="image-slot">
@@ -195,12 +195,12 @@ const handleCurrentChange = val => {
             label="套餐价"
             prop="price"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <span>￥{{ scope.row.price / 100 }}</span>
           </template>
         </el-table-column>
         <el-table-column label="售卖状态">
-          <template slot-scope="scope">
+          <template #default="scope">
             <span>{{ scope.row.status === '0' ? '停售' : '启售' }}</span>
           </template>
         </el-table-column>
@@ -214,7 +214,7 @@ const handleCurrentChange = val => {
             label="操作"
             width="160"
         >
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-button
                 class="blueBug"
                 size="small"

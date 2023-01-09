@@ -7,7 +7,6 @@
   -->
 
 <script setup>
-import "@/styles/frontend/no-wify.css"
 import {onMounted} from "vue";
 import {base} from "@/js/frontend/base.js";
 import {useRouter} from "vue-router";
@@ -42,5 +41,6 @@ const toPagePrev = () => {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/no-wify.css";
 </style>

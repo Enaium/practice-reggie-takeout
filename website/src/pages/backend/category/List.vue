@@ -49,7 +49,7 @@ const handleQuery = () => {
 }
 
 const addClass = (st) => {
-  if (st == 'class') {
+  if (st === 'class') {
     data.classData.title = '新增菜品分类'
     data.type = '1'
   } else {
@@ -166,18 +166,18 @@ const handleCurrentChange = (val) => {
       <el-table :data="data.tableData" class="tableBox" stripe>
         <el-table-column label="分类名称" prop="name"/>
         <el-table-column label="分类类型" prop="type">
-          <template slot-scope="scope">
+          <template #default="scope">
             <span>{{ scope.row.type == '1' ? '菜品分类' : '套餐分类' }}</span>
           </template>
         </el-table-column>
         <el-table-column label="操作时间" prop="updateTime">
-          <template slot-scope="scope">
+          <template #default="scope">
             {{ scope.row.updateTime }}
           </template>
         </el-table-column>
         <el-table-column label="排序" prop="sort"/>
         <el-table-column align="center" label="操作" width="160">
-          <template slot-scope="scope">
+          <template #default="scope">
             <el-button class="blueBug" size="small" type="text" @click="editHandle(scope.row)">
               修改
             </el-button>
@@ -192,7 +192,7 @@ const handleCurrentChange = (val) => {
                      @size-change="handleSizeChange"
                      @current-change="handleCurrentChange"></el-pagination>
     </div>
-    <el-dialog :before-close="handleClose" :title="data.classData.title" :visible.sync="data.classData.dialogVisible"
+    <el-dialog :before-close="handleClose" :title="data.classData.title" v-model="data.classData.dialogVisible"
                width="30%">
       <el-form class="demo-form-inline" label-width="100px">
         <el-form-item label="分类名称：">
@@ -205,7 +205,7 @@ const handleCurrentChange = (val) => {
       <span slot="footer" class="dialog-footer">
         <el-button size="medium" @click="data.classData.dialogVisible = false">取 消</el-button>
         <el-button size="medium" type="primary" @click="submitForm">确 定</el-button>
-        <el-button v-if="data.action != 'edit'" class="continue" size="medium" type="primary" @click="submitForm('go')">
+        <el-button v-if="data.action !== 'edit'" class="continue" size="medium" type="primary" @click="submitForm('go')">
           保存并继续添加 </el-button>
       </span>
     </el-dialog>

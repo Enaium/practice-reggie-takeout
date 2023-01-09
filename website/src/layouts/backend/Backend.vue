@@ -10,11 +10,9 @@
 import {onBeforeUnmount, onMounted, reactive, ref} from "vue";
 import "@/styles/backend/icon/iconfont.css"
 import "@/styles/backend/index.css"
-import "@/styles/backend/common.css"
 import "@/styles/backend/page.css"
 import {useRouter} from "vue-router";
 import {logoutApi} from "@/api/backend/login.js";
-import Message from "@/components/backend/Message.vue";
 
 
 const router = useRouter();
@@ -84,7 +82,14 @@ const goBack = () => {
 const menuHandle = (item, goBackFlag) => {
   data.loading = true
   data.menuActivated = item.id
-  router.push({path: item.path})
+  if (String(item.path).indexOf("?") === -1) {
+    router.push({path: item.path})
+  }else {
+    window.requestAnimationFrame(()=>{
+      window.location.href = item.path
+    })
+  }
+
   data.headTitle = item.name
   data.goBackFlag = goBackFlag
   closeLoading()
@@ -101,7 +106,7 @@ onMounted(() => {
   window.menuHandle = menuHandle
   const userInfo = localStorage.getItem('userInfo')
   if (userInfo) {
-    this.userInfo = JSON.parse(userInfo)
+    data.userInfo = JSON.parse(userInfo)
   }
   closeLoading();
 })
@@ -113,7 +118,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Message/>
   <div id="app" class="app">
     <div class="app-wrapper openSidebar clearfix">
       <!-- sidebar -->
@@ -151,7 +155,7 @@ onBeforeUnmount(() => {
             <span>{{ data.headTitle }}</span>
           </div>
           <div class="right-menu">
-            <div class="avatar-wrapper">userInfo.name</div>
+            <div class="avatar-wrapper">{{ data.userInfo.name }}</div>
             <!-- <div class="logout" @click="logout">退出</div> -->
             <img alt="退出" class="outLogin" src="@/assets/backend/icons/btn_close@2x.png" @click="logout"/>
           </div>

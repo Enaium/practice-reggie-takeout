@@ -7,7 +7,6 @@
   -->
 
 <script setup>
-import "@/styles/backend/common.css"
 import "@/styles/backend/login.css"
 import "@/styles/backend/icon/iconfont.css"
 import {computed, reactive, ref} from "vue";
@@ -31,8 +30,9 @@ const handleLogin = async () => {
       data.loading = true
       let res = await loginApi(data.loginForm)
       if (String(res.code) === '1') {//1表示登录成功
+        localStorage.setItem("token", res.data.token)
         localStorage.setItem('userInfo', JSON.stringify(res.data))
-        await router.push({path: "/backend"})
+        await router.push({path: "/backend/member/list"})
       } else {
         $message.error(res.msg)
         data.loading = false

@@ -12,7 +12,6 @@ import {base} from "@/js/frontend/base.js";
 import {addAddressApi, addressFindOneApi, deleteAddressApi, updateAddressApi} from "@/api/frontend/address.js";
 import {parseUrl} from "@/js/frontend/common.js";
 import {useRouter} from "vue-router";
-import "@/styles/frontend/address-edit.css"
 
 const router = useRouter()
 
@@ -140,5 +139,6 @@ const deleteAddress = async function () {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/address-edit.css";
 </style>

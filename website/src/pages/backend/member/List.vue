@@ -108,19 +108,19 @@ const handleCurrentChange = (val) => {
         <el-table-column label="账号" prop="username"></el-table-column>
         <el-table-column label="手机号" prop="phone"></el-table-column>
         <el-table-column label="账号状态">
-          <template slot-scope="scope">
+          <template #default="scope">
             {{ String(scope.row.status) === '0' ? '已禁用' : '正常' }}
           </template>
         </el-table-column>
         <el-table-column align="center" label="操作" width="160">
-          <template slot-scope="scope">
-            <el-button :class="{notAdmin:user !== 'admin'}" class="blueBug" size="small" type="text"
+          <template #default="scope">
+            <el-button :class="{notAdmin:data.user !== 'admin'}" class="blueBug" size="small" type="text"
                        @click="addMemberHandle(scope.row.id)">
               编辑
             </el-button>
-            <el-button v-if="user === 'admin'" class="delBut non" size="small" type="text"
+            <el-button v-if="data.user === 'admin'" class="delBut non" size="small" type="text"
                        @click="statusHandle(scope.row)">
-              {{ scope.row.status == '1' ? '禁用' : '启用' }}
+              {{ scope.row.status === 1 ? '禁用' : '启用' }}
             </el-button>
           </template>
         </el-table-column>

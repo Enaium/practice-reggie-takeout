@@ -13,7 +13,6 @@ import {cartListApi} from "@/api/frontend/main.js";
 import {getDefaultAddressApi} from "@/api/frontend/address.js";
 import {useRouter} from "vue-router";
 import {addOrderApi} from "@/api/frontend/order.js";
-import "@/styles/frontend/add-order.css"
 import {base} from "@/js/frontend/base.js";
 
 const router = useRouter()
@@ -194,5 +193,6 @@ const imgPathConvert = path => imgPath(path);
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/add-order.css";
 </style>

@@ -11,7 +11,6 @@ import {onMounted, reactive} from "vue";
 import {useRouter} from "vue-router";
 import {addressListApi, setDefaultAddressApi} from "@/api/frontend/address.js";
 import {base} from "@/js/frontend/base.js";
-import "@/styles/frontend/address.css"
 
 
 const router = useRouter()
@@ -144,5 +143,6 @@ const itemClick = item => {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/address.css";
 </style>

@@ -252,11 +252,11 @@
 }
 
 #add_order .divCart .imgCartActive {
-    background-image: url("./../images/cart_active.png");
+    background-image: url("@/assets/frontend/cart_active.png");
 }
 
 #add_order .divCart .imgCart {
-    background-image: url("./../images/cart.png");
+    background-image: url("@/assets/frontend/cart.png");
 }
 
 #add_order .divCart > div:first-child {

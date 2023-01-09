@@ -7,7 +7,6 @@
   -->
 
 <script setup>
-import "@/styles/frontend/pay-success.css"
 import {onMounted, reactive} from "vue";
 import {base} from "@/js/frontend/base.js";
 import {useRouter} from "vue-router";
@@ -46,7 +45,7 @@ function getFinishTime() {
   if (minute.toString().length < 2) {
     minute = '0' + minute
   }
-  this.finishTime = hour + ':' + minute
+  data.finishTime = hour + ':' + minute
 }
 </script>
 
@@ -70,5 +69,6 @@ function getFinishTime() {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/pay-success.css";
 </style>

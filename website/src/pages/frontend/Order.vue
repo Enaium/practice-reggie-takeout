@@ -7,7 +7,6 @@
   -->
 
 <script setup>
-import "@/styles/frontend/order.css"
 import {onMounted, reactive} from "vue";
 import {base} from "@/js/frontend/base.js";
 import {orderAgainApi, orderPagingApi} from "@/api/frontend/order.js";
@@ -150,5 +149,6 @@ const getStatus = status => {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/order.css";
 </style>

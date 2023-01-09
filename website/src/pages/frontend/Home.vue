@@ -424,7 +424,7 @@ async function dishDetails(item) {
           <div v-for="(item,index) in data.dishList" :key="index" class="divItem" @click="dishDetails(item)">
             <el-image :src="imgPathConvert(item.image)">
               <div slot="error" class="image-slot">
-                <img src="@/assets/frontend/noImg.png"/>
+                <img src="@/assets/frontend/noImg.png" alt=""/>
               </div>
             </el-image>
             <div>
@@ -434,14 +434,14 @@ async function dishDetails(item) {
               <div class="divBottom"><span>￥</span><span>{{ item.price / 100 }}</span></div>
               <div class="divNum">
                 <div v-if="item.number > 0" class="divSubtract">
-                  <img src="@/assets/frontend/subtract.png" @click.prevent.stop="subtractCart(item)"/>
+                  <img src="@/assets/frontend/subtract.png" @click.prevent.stop="subtractCart(item)" alt=""/>
                 </div>
                 <div class="divDishNum">{{ item.number }}</div>
                 <div v-if="item.flavors && item.flavors.length > 0 && !item.number " class="divTypes"
                      @click.prevent.stop="chooseFlavorClick(item)">选择规格
                 </div>
                 <div v-else class="divAdd">
-                  <img src="@/assets/frontend/add.png" @click.prevent.stop="addCart(item)"/>
+                  <img src="@/assets/frontend/add.png" @click.prevent.stop="addCart(item)" alt=""/>
                 </div>
               </div>
             </div>
@@ -471,7 +471,7 @@ async function dishDetails(item) {
           @click="toAddOrderPage">去结算
       </div>
     </div>
-    <Dialog ref="flavorDialog" v-model="data.dialogFlavor.show" :show-confirm-button="false" class="dialogFlavor">
+    <Dialog ref="flavorDialog" v-model:show="data.dialogFlavor.show" :show-confirm-button="false" class="dialogFlavor">
       <div class="dialogTitle">{{ data.dialogFlavor.name }}</div>
       <div class="divContent">
         <div v-for="flavor in data.dialogFlavor.flavors" :key="flavor.id">
@@ -526,7 +526,7 @@ async function dishDetails(item) {
     </Popup>
     <Dialog v-if="data.detailsDialog.show"
             ref="detailsDialog"
-            v-model="data.detailsDialog.show"
+            v-model:show="data.detailsDialog.show"
             :show-confirm-button="false"
             class="detailsDialog"
     >
@@ -564,7 +564,7 @@ async function dishDetails(item) {
     </Dialog>
     <Dialog v-if="data.setMealDialog.show"
             ref="setMealDetailsDialogd"
-            v-model="data.setMealDialog.show"
+            v-model:show="data.setMealDialog.show"
             :show-confirm-button="false"
             class="setMealDetailsDialog"
     >
@@ -609,5 +609,6 @@ async function dishDetails(item) {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/main.css";
 </style>

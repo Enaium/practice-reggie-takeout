@@ -12,7 +12,6 @@ import {orderAgainApi, orderPagingApi} from "@/api/frontend/order.js";
 import {loginoutApi} from "@/api/frontend/login.js";
 import {useRouter} from "vue-router";
 import {base} from "@/js/frontend/base.js";
-import "@/styles/frontend/user.css"
 
 const router = useRouter()
 
@@ -175,5 +174,6 @@ const toPageLogin = async () => {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/user.css";
 </style>

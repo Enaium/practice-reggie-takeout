@@ -137,7 +137,7 @@ const handleCurrentChange = (val) => {
       <el-table :data="data.tableData" class="tableBox" stripe>
         <el-table-column label="订单号" min-width="110" prop="number"></el-table-column>
         <el-table-column label="订单状态" prop="订单状态">
-          <template slot-scope="{ row }">
+          <template #default="{ row }">
             <span>{{ getOrderType(row) }}</span>
           </template>
         </el-table-column>
@@ -146,12 +146,12 @@ const handleCurrentChange = (val) => {
         <el-table-column label="地址" prop="address" show-overflow-tooltip></el-table-column>
         <el-table-column label="下单时间" min-width="100" prop="orderTime"></el-table-column>
         <el-table-column label="实收金额" prop="amount">
-          <template slot-scope="{ row }">
+          <template #default="{ row }">
             <span>￥{{ row.amount }}</span>
           </template>
         </el-table-column>
         <el-table-column label="操作" prop="btn">
-          <template slot-scope="{ row }">
+          <template #default="{ row }">
             <el-button class="blueBug" type="text" @click="goDetail(row)">
               查看
             </el-button>
@@ -183,7 +183,7 @@ const handleCurrentChange = (val) => {
     <!-- 查看弹框部分 -->
     <el-dialog
         :before-close="handleClose"
-        :visible.sync="data.dialogVisible"
+        v-model="data.dialogVisible"
         title="订单信息"
         width="30%"
     >

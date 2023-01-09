@@ -7,7 +7,6 @@
   -->
 
 <script setup>
-import "@/styles/frontend/login.css"
 import {onMounted, reactive} from "vue";
 import {loginApi, sendMsgApi} from "@/api/frontend/login.js";
 import {useRouter} from "vue-router";
@@ -75,5 +74,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
+@import "@/styles/frontend/index.css";
+@import "@/styles/frontend/login.css";
 </style>

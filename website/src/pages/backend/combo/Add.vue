@@ -279,7 +279,7 @@ function goBack() {
   window.parent.menuHandle(
       {
         id: '5',
-        url: '/backend/combo/list',
+        path: '/backend/combo/list',
         name: '套餐管理',
       },
       false
@@ -396,10 +396,10 @@ const delCheck = ind => {
                     <el-table :data="data.dishTable" style="width: 100%">
                       <el-table-column align="center" label="名称" prop="name" width="180"></el-table-column>
                       <el-table-column label="原价" prop="price" width="180">
-                        <template slot-scope="scope"> {{ Number(scope.row.price) / 100 }}</template>
+                        <template #default="scope"> {{ Number(scope.row.price) / 100 }}</template>
                       </el-table-column>
                       <el-table-column align="center" label="份数" prop="address">
-                        <template slot-scope="scope">
+                        <template #default="scope">
                           <el-input-number
                               v-model="scope.row.copies"
                               :max="99"
@@ -410,7 +410,7 @@ const delCheck = ind => {
                         </template>
                       </el-table-column>
                       <el-table-column align="center" label="操作" prop="address" width="180px;">
-                        <template slot-scope="scope">
+                        <template #default="scope">
                           <el-button size="small" type="text" @click="delDishHandle(scope.$index)"> 删除</el-button>
                         </template>
                       </el-table-column>
@@ -460,7 +460,7 @@ const delCheck = ind => {
     </div>
     <el-dialog
         :before-close="handleClose"
-        :visible.sync="data.dialogVisible"
+        v-model="data.dialogVisible"
         class="addDishList"
         title="添加菜品"
         width="60%"

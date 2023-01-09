@@ -280,11 +280,11 @@
 }
 
 #main .divCart .imgCartActive {
-    background-image: url("./../images/cart_active.png");
+    background-image: url("@/assets/frontend/cart_active.png");
 }
 
 #main .divCart .imgCart {
-    background-image: url("./../images/cart.png");
+    background-image: url("@/assets/frontend/cart.png");
 }
 
 #main .divCart > div:first-child {

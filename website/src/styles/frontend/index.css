@@ -55,35 +55,35 @@ i {
 
 @font-face {
     font-family: "DIN-Medium";
-    src: url("../fonts/DIN-Medium.otf");
+    src: url("@/assets/fonts/DIN-Medium.otf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "DIN";
-    src: url("../fonts/DIN-Bold.otf");
+    src: url("@/assets/fonts/DIN-Bold.otf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "PingFangSC-Regular";
-    src: url("../fonts/PingFangSC-Regular.ttf");
+    src: url("@/assets/fonts/PingFangSC-Regular.ttf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "PingFangSC-Regular";
-    src: url("../fonts/PingFangSC-Regular.ttf");
+    src: url("@/assets/fonts/PingFangSC-Regular.ttf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "PingFangSC-Semibold";
-    src: url("../fonts/PingFangSC-Semibold.ttf");
+    src: url("@/assets/fonts/PingFangSC-Semibold.ttf");
     font-weight: normal;
     font-style: normal;
 }

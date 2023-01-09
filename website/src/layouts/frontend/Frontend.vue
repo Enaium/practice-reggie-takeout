@@ -8,12 +8,9 @@
 
 <script setup>
 
-import Notify from "@/components/frontend/Notify.vue";
-import "@/styles/frontend/index.css"
-import "@/styles/frontend/main.css"</script>
+</script>
 
 <template>
-  <Notify/>
   <router-view/>
 </template>
 

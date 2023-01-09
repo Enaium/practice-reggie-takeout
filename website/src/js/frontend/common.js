@@ -8,7 +8,7 @@
 
 const web_prefix = '/front';
 
-export const imgPath = path => '/common/download?name=' + path;
+export const imgPath = path => 'http://localhost:8080/common/download?name=' + path;
 
 //将url传参转换为数组
 export const parseUrl = url => {
