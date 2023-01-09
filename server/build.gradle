@@ -6,7 +6,7 @@ plugins {
 
 group = 'cn.enaium'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '8'
 
 configurations {
 	compileOnly {
@@ -23,8 +23,13 @@ dependencies {
 	implementation 'cn.dev33:sa-token-spring-boot-starter:1.33.0'
 	implementation 'cn.dev33:sa-token-dao-redis-jackson:1.33.0'
 	implementation 'org.apache.commons:commons-pool2'
+	implementation 'com.aliyun:aliyun-java-sdk-core:4.5.16'
+	implementation 'com.aliyun:aliyun-java-sdk-dysmsapi:2.1.0'
+	implementation 'commons-lang:commons-lang:2.6'
+	implementation 'com.alibaba:druid-spring-boot-starter:1.1.23'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.jetbrains:annotations:23.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
