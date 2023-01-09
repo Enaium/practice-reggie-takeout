@@ -71,8 +71,7 @@ const logout = () => {
   logoutApi().then((res) => {
     if (res.code === 1) {
       localStorage.removeItem('userInfo')
-      //todo
-      // window.location.href = '/backend/page/login/login.html'
+      router.push({path: "/backend/login"})
     }
   })
 }

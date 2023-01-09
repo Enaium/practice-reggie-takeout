@@ -11,6 +11,9 @@ import {computed, onMounted, reactive, ref, watch} from "vue";
 import {requestUrlParam} from "@/js/backend/index.js";
 import {addSetmeal, editSetmeal, querySetmealById} from "@/api/backend/combo.js";
 import {getCategoryList, queryDishList} from "@/api/backend/food.js";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 const data = reactive({
   id: '',
@@ -248,7 +251,7 @@ function submitForm(formName, st) {
 function handleAvatarSuccess(response, file, fileList) {
   // data.imageUrl = response.data
   if (response.code === 0 && response.msg === '未登录') {
-    window.top.location.href = '/backend/page/login/login.html'
+    router.push({path: "/backend/login"})
   } else {
     data.imageUrl = `/common/download?name=${response.data}`
     data.ruleForm.image = response.data

@@ -54,7 +54,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(res => {
         console.log('---响应拦截器---', res)
         if (res.data.code === 0 && res.data.msg === 'NOTLOGIN') {// 返回登录页面
-            window.top.location.href = '/front/page/login.html'
+            $router.push({path: "/backend/login"}).then(ignored => ignored)
         } else {
             return res.data
         }

@@ -10,6 +10,9 @@
 import {computed, onMounted, reactive, ref} from "vue";
 import {requestUrlParam} from "@/js/backend/index.js";
 import {addDish, editDish, getCategoryList, queryDishById} from "@/api/backend/food.js";
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 const data = reactive({
   id: '',
@@ -262,7 +265,7 @@ function submitForm(formName, st) {
 function handleAvatarSuccess(response, file, fileList) {
   // 拼接down接口预览
   if (response.code === 0 && response.msg === '未登录') {
-    window.top.location.href = '/backend/page/login/login.html'
+    router.push({path: "/backend/login"})
   } else {
     data.imageUrl = `/common/download?name=${response.data}`
     data.ruleForm.image = response.data
@@ -289,7 +292,7 @@ function onChange(file) {
 function goBack() {
   window.parent.menuHandle({
     id: '4',
-    url: '/backend/page/food/list.html',
+    path: '/backend/food/list',
     name: '菜品管理'
   }, false)
 }

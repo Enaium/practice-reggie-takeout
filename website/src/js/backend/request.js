@@ -60,9 +60,9 @@ service.interceptors.response.use(res => {
         const msg = res.data.msg
         console.log('---code---', code)
         if (res.data.code === 0 && res.data.msg === 'NOTLOGIN') {// 返回登录页面
-            console.log('---/backend/page/login/login.html---', code)
+            console.log('---/backend/login---', code)
             localStorage.removeItem('userInfo')
-            window.top.location.href = '/backend/page/login/login.html'
+            $router.push({path: "/backend/login"}).then(ignored => ignored)
         } else {
             return res.data
         }

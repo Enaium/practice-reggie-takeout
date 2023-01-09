@@ -21,6 +21,12 @@ import Frontend from "@/layouts/frontend/Frontend.vue";
 import Home from "@/pages/frontend/Home.vue";
 import Login from "@/pages/frontend/Login.vue";
 import AddOrder from "@/pages/frontend/AddOrder.vue";
+import User from "@/pages/frontend/User.vue";
+import Address from "@/pages/frontend/Address.vue";
+import AddressEdit from "@/pages/frontend/AddressEdit.vue";
+import Order from "@/pages/frontend/Order.vue";
+import NoNetwork from "@/pages/frontend/NoNetwork.vue";
+import PaySuccess from "@/pages/frontend/PaySuccess.vue";
 
 export default createRouter({
     history: createWebHistory(),
@@ -41,9 +47,39 @@ export default createRouter({
                     component: Login
                 },
                 {
+                    path: "user",
+                    name: "user",
+                    component: User
+                },
+                {
+                    path: "address",
+                    name: "address",
+                    component: Address
+                },
+                {
+                    path: "address-edit",
+                    name: "address-edit",
+                    component: AddressEdit
+                },
+                {
+                    path: "order",
+                    name: "order",
+                    component: Order
+                },
+                {
                     path: "add-order",
                     name: "add-order",
                     component: AddOrder
+                },
+                {
+                    path: "no-network",
+                    name: "no-network",
+                    component: NoNetwork
+                },
+                {
+                    path: "pay-success",
+                    name: "pay-success",
+                    component: PaySuccess
                 },
             ]
         },

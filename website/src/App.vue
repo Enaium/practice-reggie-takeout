@@ -7,7 +7,9 @@
   -->
 
 <script setup>
+import {useRouter} from "vue-router";
 
+window.$router = useRouter()
 </script>
 
 <template>
